@@ -1,14 +1,19 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Flights</h1>
+<h1>Search Flights</h1>
 
-<div id="flights">
-  <% @flights.each do |flight| %>
-    <%= render flight %>
-    <p>
-      <%= link_to "Show this flight", flight %>
-    </p>
-  <% end %>
-</div>
+<%= form_with(url: "/flights", method: "get") do %>
+  <%= select_tag(:departure_id, options_for_select(@airport_options)) %>
+  <%= select_tag(:arrival_id, options_for_select(@airport_options)) %>
+  <%= submit_tag("Search") %>
+<% end %>
 
-<%= link_to "New flight", new_flight_path %>
+<% if @search_result_flights %>
+  <ul>
+    <% @search_result_flights.each do |flight| %>
+    <li>
+      <%= link_to "#{flight.start}", flight %>
+    </li>
+    <% end %>
+  </ul>
+<% end %>
