@@ -27,7 +27,7 @@ airports.each do |airport_code|
 end
 
 airport_objects = Airport.all
-number_of_flights = 100
+number_of_flights = 1000
 now = Time.now
 in_one_year = now + 60 * 60 * 24 * 365 
 
