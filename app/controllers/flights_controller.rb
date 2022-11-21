@@ -11,6 +11,7 @@ class FlightsController < ApplicationController
     if search_params[:commit]
       @arrival_id = search_params[:arrival_id]
       @departure_id = search_params[:departure_id]
+      @num_passengers = search_params[:num_passengers]
       @search_result_flights = Flight.where(arrival_id: @arrival_id, departure_id: @departure_id)
     end
   end
@@ -78,6 +79,6 @@ class FlightsController < ApplicationController
     end
 
     def search_params
-      params.permit(:arrival_id, :departure_id, :start, :duration, :id, :commit)
+      params.permit(:arrival_id, :departure_id, :start, :duration, :num_passengers, :commit)
     end
 end
