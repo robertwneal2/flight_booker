@@ -3,8 +3,8 @@
 <h1>Search Flights</h1>
 
 <%= form_with(url: "/search", method: "get") do %>
-  <%= select_tag(:departure_id, options_for_select(@airport_options)) %>
-  <%= select_tag(:arrival_id, options_for_select(@airport_options)) %>
+  <%= select_tag(:departure_id, options_for_select(@airport_options, @departure_id)) %>
+  <%= select_tag(:arrival_id, options_for_select(@airport_options, @arrival_id)) %>
   <%= submit_tag("Search") %>
 <% end %>
 

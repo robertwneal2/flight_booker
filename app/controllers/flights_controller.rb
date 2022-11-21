@@ -9,9 +9,9 @@ class FlightsController < ApplicationController
   def search
     @airport_options = Airport.all.map { |airport| [airport.code, airport.id]}
     if search_params[:commit]
-      arrival_id = search_params[:arrival_id]
-      departure_id = search_params[:departure_id]
-      @search_result_flights = Flight.where(arrival_id: arrival_id, departure_id: departure_id)
+      @arrival_id = search_params[:arrival_id]
+      @departure_id = search_params[:departure_id]
+      @search_result_flights = Flight.where(arrival_id: @arrival_id, departure_id: @departure_id)
     end
   end
 
