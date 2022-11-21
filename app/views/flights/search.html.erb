@@ -1,0 +1,19 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Search Flights</h1>
+
+<%= form_with(url: "/search", method: "get") do %>
+  <%= select_tag(:departure_id, options_for_select(@airport_options)) %>
+  <%= select_tag(:arrival_id, options_for_select(@airport_options)) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<% if @search_result_flights %>
+  <ul>
+    <% @search_result_flights.each do |flight| %>
+    <li>
+      <%= link_to "#{flight.start}", flight %>
+    </li>
+    <% end %>
+  </ul>
+<% end %>

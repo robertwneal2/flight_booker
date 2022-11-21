@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :flights
-  # get 'flights/search', to: 'flights#search'
+  get 'search', to: 'flights#search'
   resources :airports
-  root "flights#index"
+  root "flights#search"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

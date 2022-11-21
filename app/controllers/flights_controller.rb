@@ -3,6 +3,10 @@ class FlightsController < ApplicationController
 
   # GET /flights or /flights.json
   def index
+    @flights = Flight.all.includes(:arrival, :departure)
+  end
+
+  def search
     @airport_options = Airport.all.map { |airport| [airport.code, airport.id]}
     if search_params[:commit]
       arrival_id = search_params[:arrival_id]
