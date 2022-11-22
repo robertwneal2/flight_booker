@@ -24,7 +24,7 @@
         <%= label(:flight_id, "Departure Time: #{flight.start.strftime("%H:%M")}, Duration: #{flight.duration}")%>
       </p>
     <% end %>
-    <% hidden_field_tag(:num_passengers, @num_passengers)%>
+    <%= hidden_field_tag(:num_passengers, @num_passengers)%>
     <%= submit_tag("Book") %>
   <% end %>
 <% end %>
