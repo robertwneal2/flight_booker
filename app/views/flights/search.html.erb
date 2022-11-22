@@ -5,11 +5,11 @@
 <%= form_with(url: "/search", method: "get") do %>
   <%= label(:departure_id, "From:") %>
   <%= select_tag(:departure_id, options_for_select(@airport_options, @departure_id)) %>
-  <%= label(:departure_id, "To:") %>
+  <%= label(:arrival_id, "To:") %>
   <%= select_tag(:arrival_id, options_for_select(@airport_options, @arrival_id)) %>
-  <%= label(:departure_id, "Passengers:") %>
+  <%= label(:num_passengers, "Passengers:") %>
   <%= select_tag(:num_passengers, options_for_select([1, 2, 3, 4], @num_passengers)) %>
-  <%= label(:departure_id, "Date:") %>
+  <%= label(:date, "Date:") %>
   <%= select_tag(:date, options_from_collection_for_select(@dates, :date, :date_formatted, @date)) %>
   <%= submit_tag("Search") %>
 <% end %>
@@ -24,6 +24,7 @@
         <%= label(:flight_id, "Departure Time: #{flight.start.strftime("%H:%M")}, Duration: #{flight.duration}")%>
       </p>
     <% end %>
+    <% hidden_field_tag(:num_passengers, @num_passengers)%>
     <%= submit_tag("Book") %>
   <% end %>
 <% end %>
