@@ -8,11 +8,29 @@ class FlightsController < ApplicationController
 
   def search
     @airport_options = Airport.all.map { |airport| [airport.code, airport.id]}
+    @dates = Flight.all_unique_dates
     if search_params[:commit]
+      @date = search_params[:date]
+      day_start = @date.to_time
+      day_end = day_start + (60*60*24-1)
       @arrival_id = search_params[:arrival_id]
       @departure_id = search_params[:departure_id]
       @num_passengers = search_params[:num_passengers]
-      @search_result_flights = Flight.where(arrival_id: @arrival_id, departure_id: @departure_id)
+      @search_result_flights = Flight.where([
+        "arrival_id = :arrival_id and
+        departure_id = :departure_id and
+        start >= :day_start and
+        start <= :day_end",
+        { 
+          arrival_id: @arrival_id, 
+          departure_id: @departure_id, 
+          day_start: day_start, 
+          day_end: day_end 
+        }
+      ]).order(:start)
+      if @search_result_flights.empty?
+        @search_result_flights = 'No flights found'
+      end
     end
   end
 
@@ -79,6 +97,6 @@ class FlightsController < ApplicationController
     end
 
     def search_params
-      params.permit(:arrival_id, :departure_id, :start, :duration, :num_passengers, :commit)
+      params.permit(:arrival_id, :departure_id, :date, :duration, :num_passengers, :commit)
     end
 end

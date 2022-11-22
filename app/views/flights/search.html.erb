@@ -3,17 +3,24 @@
 <h1>Search Flights</h1>
 
 <%= form_with(url: "/search", method: "get") do %>
+  <%= label(:departure_id, "From:") %>
   <%= select_tag(:departure_id, options_for_select(@airport_options, @departure_id)) %>
+  <%= label(:departure_id, "To:") %>
   <%= select_tag(:arrival_id, options_for_select(@airport_options, @arrival_id)) %>
+  <%= label(:departure_id, "Passengers:") %>
   <%= select_tag(:num_passengers, options_for_select([1, 2, 3, 4], @num_passengers)) %>
+  <%= label(:departure_id, "Date:") %>
+  <%= select_tag(:date, options_from_collection_for_select(@dates, :date, :date_formatted, @date)) %>
   <%= submit_tag("Search") %>
 <% end %>
 
-<% if @search_result_flights %>
+<% if @search_result_flights == 'No flights found' %>
+  <p><%= "No flights found" %></p>
+<% elsif @search_result_flights %>
   <ul>
     <% @search_result_flights.each do |flight| %>
     <li>
-      <%= link_to "#{flight.start}", flight %>
+      <%= link_to "Departure Time: #{flight.start.strftime("%H:%M")}, Duration: #{flight.duration}", flight %>
     </li>
     <% end %>
   </ul>
