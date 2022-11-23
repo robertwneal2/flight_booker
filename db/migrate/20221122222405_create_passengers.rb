@@ -6,6 +6,12 @@ class CreatePassengers < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-    add_belongs_to :bookings, :passenger, null: false, foreign_key: { to_table: :passengers }
+
+    create_join_table :passengers, :bookings, table_name: :passenger_bookings do |t|
+      t.index :passenger_id
+      t.index :booking_id
+
+      t.timestamps
+    end
   end
 end

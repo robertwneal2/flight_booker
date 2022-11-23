@@ -1,4 +1,5 @@
 class Booking < ApplicationRecord
   belongs_to :flight
-  belongs_to :passenger
+  has_many :passenger_bookings, foreign_key: :booking_id
+  has_many :passengers, through: :passenger_bookings, source: :passenger, dependent: :destroy
 end
