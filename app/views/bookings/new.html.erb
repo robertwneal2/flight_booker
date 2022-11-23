@@ -1,12 +1,12 @@
 <%= form_with model: @booking do |f| %>
   <% i = 1 %>
-  <%= f.fields_for :passengers do |sub_form| %>
+  <%= f.fields_for :passengers do |passenger_sub_form| %>
     <p>
       <strong><%= "Passenger #{i}"%></strong>
       <%= label(:name, "Name:")%>
-      <%= sub_form.text_field(:name)%>
+      <%= passenger_sub_form.text_field(:name)%>
       <%= label(:email, "Email:")%>
-      <%= sub_form.text_field(:email)%>
+      <%= passenger_sub_form.text_field(:email)%>
     </p>
     <% i += 1 %>
   <% end %>
