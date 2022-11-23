@@ -1,0 +1,14 @@
+<div id="<%= dom_id booking %>">
+  <p>
+    <h1>Flight:</h1>
+    <%= render booking.flight %>
+  </p>
+  <h1>Passengers:</h1>
+    <% booking.passengers.each do |passenger| %>
+      <p>
+        <%= "Name: #{passenger.name}," %>
+        <%= "Email: #{passenger.email}" %>
+      </p>
+    <% end %>
+  </p>
+</div>

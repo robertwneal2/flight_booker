@@ -1,14 +1,14 @@
 <%= form_with model: @booking do |f| %>
-  <% @passengers.each_with_index do |passenger, index| %>
-    <%= f.fields_for passenger do |sub_form| %>
-      <p>
-        <strong><%= "Passenger #{index+1}"%></strong>
-        <%= label(:name, "Name:")%>
-        <%= sub_form.text_field(:name)%>
-        <%= label(:email, "Email:")%>
-        <%= sub_form.text_field(:email)%>
-      </p>
-    <% end %>
+  <% i = 1 %>
+  <%= f.fields_for :passengers do |sub_form| %>
+    <p>
+      <strong><%= "Passenger #{i}"%></strong>
+      <%= label(:name, "Name:")%>
+      <%= sub_form.text_field(:name)%>
+      <%= label(:email, "Email:")%>
+      <%= sub_form.text_field(:email)%>
+    </p>
+    <% i += 1 %>
   <% end %>
   <%= f.hidden_field(:flight_id, value: @flight_id) %>
   <%= f.submit %>
