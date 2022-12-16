@@ -1,0 +1,12 @@
+Thank you, <%= @passenger.name %>!
+
+You have successfully booked the following flight: 
+
+Departure Airport: <%= @flight.departure.code %>
+Arrival Airport: <%= @flight.arrival.code %>
+Departure Time: <%= @flight.start %>
+Flight Duration: <%= @flight.duration %>
+
+To search for more flights, just follow this link: <%= @url %>
+
+Thanks for flying and have a great day!
